@@ -238,3 +238,56 @@ MVP (web / PWA):
 4. Watch group retention at day 7 and day 30, the share of days covered by Understudies, and how often people share screenshots.
 
 **First Light** is the most beautiful idea and has the best shareable, but it needs a crowd to work. It's a later bet, or a one-off launch event.
+
+---
+
+## Round 2: simple enough to get in five seconds
+
+**What we learned:** Forty Thieves was too fiddly. It needed a tutorial, which is a bad sign for something you're meant to open every day. Every idea in this round passes a five-second test: one action a day, explained in one sentence.
+
+### One Brick
+> Tap once a day to drop a brick onto your tower. Don't let it fall.
+- The brick slides back and forth, and you tap to drop it. Whatever hangs over the edge gets sliced off, so one sloppy day makes every later day harder.
+- The tower never resets, so the taller it grows, the scarier each tap feels.
+- Skip a day and a cracked brick goes in. Friends' towers stand side by side as a skyline.
+- Closest thing: the one-tap game Stack. What's new is the pace, one brick a day, on a tower that lasts.
+
+### Odd One Out
+> One question a day with two answers. You win if you picked the side fewer people chose.
+- "Cats or dogs?" If 70% say dogs, the cat people win. You stop answering honestly and start guessing what everyone else will do.
+- Results come in at midnight. Your streak is days in a row in the minority, and long ones are rare.
+- It needs a crowd to work. Game theorists call it the minority game (or the El Farol Bar problem).
+
+### Same
+> You and a friend get the same question each day. Give the same answer without talking and the streak lives.
+- "Name a fruit." "A number from 1 to 10." "The worst film ever made." Answers are revealed at the same moment.
+- A miss sends the streak back to zero, so a long streak means something. Over months you learn exactly how the other person thinks.
+- It's the party game of trying to say the same word at once, played daily with one person.
+
+### Still Here
+> Tap once a day. Miss a day and you're out of the season for good.
+- The home screen is one number, how many people are still in, and it only ever goes down.
+- The drama is watching it fall, outlasting 99% of players, and the last few hundred becoming minor celebrities.
+- Closest thing: Reddit's The Button (2015). It needs a crowd and works best as a season-long event.
+
+### 80 Throws
+> Flick your phone once a day to throw a paper plane. It takes off from wherever yesterday's landed.
+- Real wind carries it, and each country it lands in stamps it. Race your friends around the world.
+- Closest thing: Google's Paper Planes (2016), where you threw and caught planes. What's new is a daily journey.
+
+### Slow Poker
+> Draw one card a day, keep it or toss it. The best hand on Sunday wins your group.
+- You go to bed every night needing a heart. On Monday you start a new hand.
+
+### Cash Out
+> Your streak is a pot. Each day, one higher-or-lower guess doubles it, and a wrong guess wipes it out. Or bank it.
+- The longer you last, the harder the call gets. Think Deal or No Deal with no money involved.
+
+### Hot Potato
+> Pass a potato to a friend. They have 24 hours to pass it on, and the timer shrinks with every pass.
+- Nobody wants to be holding it when it burns. It fits naturally in a group chat.
+
+### Picks from this round
+- **One Brick**, to play today: it works alone, needs no other players, and is quick to prototype.
+- **Same**, for the strongest pull between two people.
+- **Odd One Out** and **Still Here** are strong but need a crowd before they're fun.
