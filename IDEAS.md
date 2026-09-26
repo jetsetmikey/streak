@@ -70,6 +70,8 @@ Being unputdownable doesn't require long sessions. What matters is that the game
 
 **The twist: no seat is ever empty.** If you don't answer in time, your **Understudy** answers for you. It's an AI that has studied every answer you've ever given and does its best impression of you. Its answer appears under your name with a small 🎭 mask.
 
+The closest thing that exists is Forza's Drivatar, an AI that races under your name while you're offline. This is Drivatar for your sense of humor.
+
 The pressure isn't "don't lose your streak." It's **"don't let the robot be funnier than you."**
 - If your Understudy wins the vote, the trophy goes on *your* profile.
 - If it wins three times in a row, it gets promoted. It answers alongside you every day until you beat it in a head-to-head vote and win your seat back.
@@ -137,7 +139,7 @@ You keep three streaks at once: **yours, your slot's, and the world's.** Your pe
 ### 5. DON'T LOOK
 > **A garden that only grows when you're not watching.**
 
-- Your garden grows only while nobody is looking at it. Look, and it freezes. Growth speeds up the longer you stay away: one day grows moss, a week grows a forest full of creatures you've never seen, a month grows something with its own weather.
+- Your garden grows only while nobody is looking at it. Look, and it freezes. Growth speeds up the longer you stay away: one day grows moss, a week grows a forest full of creatures you've never seen, a month grows something with its own weather. **Every peek resets that clock**, so looking always costs you something.
 - The streak is inverted. It counts days you **didn't** look.
 - **The cruel part:** your friends *can* see your garden. You can't, unless you look and freeze it. So they tell you about it: *"Oh my god. You need to see what's in your garden." "Actually, don't look yet. It's about to hatch."*
 - You still open the app every day, to visit friends' gardens, tease them, and **plant surprises in them that they can't see yet**. Gifts pile up unseen.
@@ -154,7 +156,7 @@ You keep three streaks at once: **yours, your slot's, and the world's.** Your pe
 - **Why it hooks:** two loops feed each other (keep your creature alive, and dig every day), every dig is a surprise, and there's a collection to fill. A long streak dying is now the best thing you can give the world.
 - The creature can stand for any habit you track: workouts, a language, anything.
 
-### 7. JINX
+### 7. ON THREE
 > **A streak you can only keep by doing it at exactly the same moment as a friend.**
 
 - Once a day, you and a friend each tap. It only counts if you tap at the same moment, and "the same moment" gets tighter as the streak grows: **10 seconds on day 1, 1 second by day 30, a tenth of a second by day 100.**
@@ -186,17 +188,32 @@ You keep three streaks at once: **yours, your slot's, and the world's.** Your pe
 
 ---
 
-## How they compare (rough, subjective)
+## What already exists
+
+A quick prior-art check (a few searches per idea, so "no match found" doesn't prove nothing exists):
+
+| Idea | Closest existing things | What's still new |
+|---|---|---|
+| Forty Thieves | Co-op with your own clones: Cursor*10, The Last Clockwinder, UnLoop, Quantum League. Heists with your past selves: game-jam entries such as "Heist Team: Me, Myself, and I" (GMTK Jam 2025). One attempt a day: Spelunky's Daily Challenge, Hitman's Elusive Targets. | No game found where each clone costs one real day and can never be redone. The calendar is the level. |
+| The Understudy | Forza's Drivatar and Killer Instinct's Shadows (AIs trained on you that play under your name), Quiplash's automatic "Safety Quip" when a player doesn't answer, Human or Not, Meta AI Studio creator clones. | Each piece exists, but the combination doesn't: a stand-in that covers only your missed days in a friend-group game and can win your seat. |
+| First Light | Reveil (SoundCamp, yearly since 2014): a 24-hour live broadcast that follows daybreak around the planet using volunteer audio streams. LiveSunrise.io. Reddit's The Button (one global shared countdown). | A daily, permanent, human-verified streak for the whole planet that breaks if any slot is missed. |
+| Antipode | Shared-pet apps for people who already know each other (Pengu, Widgetable, Lovegotchi, which pitches care across time zones). Slowly (pen pals with strangers). Journey and Sky (strangers without words). | Matching strangers about 12 hours apart on purpose, with the pet as the only way to communicate. It's a crowded category. |
+| Don't Look | Neko Atsume (cats visit only while the app is closed), Forest (a tree grows while you're off your phone), The Longing, idle games that pay out for time away. | "It grows while you're away" is taken. What's new is that peeking resets growth that compounds, and friends can see what you can't. |
+| Fossil Record | Let It Die's "Haters" (dead players' characters roam other players' worlds), Dark Souls bloodstains, a "Streak Graveyard" that writes a eulogy for a broken streak. | No match found for broken streaks becoming fossils sized by their length in a shared world, with digging as the daily loop. |
+| On Three | Thumbkiss (both people touch the same spot at once), Bump, The Mind (a card game about timing without talking). | No match found for a sync window that shrinks as the streak grows. (Renamed from "Jinx" because an app called "JINX – Pick Someone" already exists. All names here are working titles.) |
+| Orphanage | Neopets Pound (adopting abandoned pets with their stats), BookCrossing, 1000 Journals, Geocaching Travel Bugs, Where's George? | No match found for adopting someone else's broken streak and continuing the count. |
+
+## How they compare (rough and subjective; novelty reflects the check above)
 
 | Idea | Novelty | Stickiness | Build effort | Needs lots of players to work? |
 |---|---|---|---|---|
 | Forty Thieves | ★★★ | ★★★ | Medium | No, single player |
-| The Understudy | ★★★ | ★★★ | Low | No, one friend group |
+| The Understudy | ★★☆ | ★★★ | Low | No, one friend group |
 | First Light | ★★★ | ★★☆ | Medium | **Yes**, needs global coverage |
-| Antipode | ★★★ | ★★☆ | Medium | Somewhat, needs matching |
-| Don't Look | ★★★ | ★★☆ | Low | No |
-| Fossil Record | ★★☆ | ★★☆ | Medium | Yes, needs fossils to dig |
-| Jinx | ★★☆ | ★★☆ | Low | No, two people |
+| Fossil Record | ★★★ | ★★☆ | Medium | Yes, needs fossils to dig |
+| Antipode | ★★☆ | ★★☆ | Medium | Somewhat, needs matching |
+| Don't Look | ★★☆ | ★★☆ | Low | No |
+| On Three | ★★☆ | ★★☆ | Low | No, two people |
 
 ---
 
