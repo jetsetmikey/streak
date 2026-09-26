@@ -1,0 +1,13 @@
+{
+  "name": "forty-thieves",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One heist. Forty days. Every thief is you.",
+  "scripts": {
+    "test": "node --test",
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

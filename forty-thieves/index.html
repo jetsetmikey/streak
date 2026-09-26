@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- build:skeleton (the artifact host supplies this part itself) -->
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<!-- /build:skeleton -->
+<!-- build:head -->
+<title>Forty Thieves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Big+Shoulders+Stencil+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!-- /build:head -->
+</head>
+<body>
+<!-- build:body -->
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-name">Forty Thieves</span>
+      <span class="brand-sub">Grand Meridian Bank</span>
+    </div>
+    <div class="daybox"><span id="dayNum">Day 1</span><span class="day-of" id="dayOf">/40</span></div>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="Open the menu" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+  </header>
+
+  <div class="chairs" id="chairs" role="list" aria-label="Your crew, one chair per day"></div>
+
+  <main class="stage">
+    <div class="board-col">
+      <div class="hud" id="hud" aria-hidden="true">
+        <span class="hud-chip hud-clock" id="hudClock">0:00</span>
+        <span class="hud-chip hud-take" id="hudTake">$0</span>
+        <span class="hud-chip hud-power is-on" id="hudPower">Power on</span>
+      </div>
+      <div class="board" id="board">
+        <canvas id="map" role="img" aria-label="Blueprint of the Grand Meridian Bank with your crew on it"></canvas>
+        <div class="banner" id="banner" hidden>
+          <div class="banner-big" id="bannerBig"></div>
+          <div class="banner-small" id="bannerSmall"></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="panel" id="panel">
+      <div class="view view-intro" id="viewIntro" hidden>
+        <p class="eyebrow" id="introEyebrow">Example crew</p>
+        <h1 class="title">Forty Thieves</h1>
+        <p class="tagline">One heist. Forty days. Every thief is you.</p>
+        <ul class="rules">
+          <li>You get one 60-second run a day. No retries.</li>
+          <li>Tomorrow, today's run replays next to you. The crew grows every day.</li>
+          <li>Your past selves repeat exactly what you did. You can change what happens to them, never what they do.</li>
+          <li>Miss a day and you leave an empty chair.</li>
+        </ul>
+        <button class="btn primary" id="introBtn" type="button">Case the joint</button>
+      </div>
+
+      <div class="view view-hq" id="viewHq" hidden>
+        <div class="replay">
+          <button class="chip" id="playBtn" type="button">Pause</button>
+          <input type="range" id="scrub" min="0" max="3600" value="0" step="1" aria-label="Replay time">
+          <span class="replay-time" id="replayTime">0:00</span>
+          <button class="chip" id="speedBtn" type="button" aria-label="Replay speed">1×</button>
+          <button class="chip" id="pathsBtn" type="button" aria-pressed="false">Paths</button>
+        </div>
+        <h2 class="view-title" id="hqTitle">Day 1: case the joint</h2>
+        <p class="stats" id="hqStats"></p>
+        <div class="actions">
+          <button class="btn primary" id="startBtn" type="button">Start today's run</button>
+          <button class="btn ghost" id="skipBtn" type="button">Skip today</button>
+        </div>
+        <ul class="notes" id="hqNotes"></ul>
+        <p class="fineprint" id="hqFine"></p>
+      </div>
+
+      <div class="view view-run" id="viewRun" hidden>
+        <div class="run-top">
+          <span class="run-status" id="runStatus">Your run is live</span>
+          <button class="chip" id="endBtn" type="button">Stop</button>
+        </div>
+        <div class="pad">
+          <div class="stick-zone" id="stickZone">
+            <div class="stick-base" id="stickBase"><div class="stick-knob" id="stickKnob"></div></div>
+            <span class="stick-hint">Drag here to move</span>
+          </div>
+          <button class="act-btn" id="actBtn" type="button" aria-label="Act: grab, drop, pull the lever, knock out a guard">Act</button>
+        </div>
+        <p class="keys"><kbd>WASD</kbd> or arrows to move. <kbd>Space</kbd> grabs, drops, pulls levers and knocks out guards. <kbd>Esc</kbd> stops.</p>
+      </div>
+
+      <div class="view view-results" id="viewResults" hidden>
+        <h2 class="view-title" id="resTitle">Day 1 is in the books</h2>
+        <p class="take-row"><span class="take" id="resTake">$0</span> <span class="delta" id="resDelta">+$0</span></p>
+        <ul class="notes" id="resNotes"></ul>
+        <details class="crew">
+          <summary>Crew report</summary>
+          <ol class="crew-list" id="resCrew"></ol>
+        </details>
+        <div class="actions">
+          <button class="btn primary" id="doneBtn" type="button">Back to the plan</button>
+          <button class="btn" id="shareBtn" type="button">Copy result</button>
+        </div>
+      </div>
+
+      <textarea class="share-out" id="shareOut" rows="4" readonly hidden aria-label="Your result, ready to copy"></textarea>
+    </section>
+  </main>
+
+  <div class="menu" id="menu" hidden>
+    <div class="menu-sheet" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+      <div class="menu-head">
+        <h2 id="menuTitle">How it works</h2>
+        <button class="icon-btn" id="menuClose" type="button" aria-label="Close the menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </button>
+      </div>
+      <ul class="legend">
+        <li><i class="sw sw-you"></i><span>You, today. Your past selves are the numbered dots.</span></li>
+        <li><i class="sw sw-guard"></i><span>Guards grab anyone who lingers in their yellow cone. Sneak up behind one and press Act to knock him out for 12 seconds.</span></li>
+        <li><i class="sw sw-cam"></i><span>The camera and the lasers raise the alarm. Police arrive 10 seconds later and the heist ends.</span></li>
+        <li><i class="sw sw-lever"></i><span>The lever in the security office cuts the power for 10 seconds.</span></li>
+        <li><i class="sw sw-plate"></i><span>A plate opens the door with its letter while someone stands on it. The vault needs both of its plates at the same moment.</span></li>
+        <li><i class="sw sw-gold"></i><span>Press Act to pick up loot. Carry it to the van. Gold is heavy.</span></li>
+      </ul>
+      <div class="menu-actions">
+        <button class="btn" id="soundBtn" type="button">Sound: on</button>
+        <button class="btn" id="exampleBtn" type="button">Watch the example crew</button>
+      </div>
+      <h3>Keep your heist safe</h3>
+      <p class="fineprint">Your runs are saved in this browser. Copy a backup code to keep them safe or move them to another device.</p>
+      <div class="menu-actions">
+        <button class="btn" id="backupBtn" type="button">Copy backup code</button>
+      </div>
+      <label class="fineprint" for="restoreText">Restore from a backup code</label>
+      <textarea id="restoreText" rows="2" placeholder="FT1:…"></textarea>
+      <div class="menu-actions">
+        <button class="btn" id="restoreBtn" type="button">Restore</button>
+        <button class="btn danger" id="resetBtn" type="button">Start over</button>
+      </div>
+      <p class="fineprint" id="menuMsg" aria-live="polite"></p>
+    </div>
+  </div>
+</div>
+<!-- /build:body -->
+<script src="src/level.js"></script>
+<script src="src/sim.js"></script>
+<script src="src/timeline.js"></script>
+<script src="src/autopilot.js"></script>
+<script src="src/demo.js"></script>
+<script src="src/storage.js"></script>
+<script src="src/input.js"></script>
+<script src="src/render.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>

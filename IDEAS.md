@@ -221,6 +221,8 @@ A quick prior-art check (a few searches per idea, so "no match found" doesn't pr
 
 **Forty Thieves**, if the goal is a game. It's the most original idea here and the most likely to follow you around all day, and it needs no player base to be fun on day one.
 
+**Prototype:** a playable version is in [`forty-thieves/`](forty-thieves/). Open `forty-thieves/index.html` in a browser.
+
 MVP (web / PWA):
 1. One hand-built map, top-down 2D, 60-second runs.
 2. A deterministic simulation: fixed timestep, seeded RNG, per-tick input recording, all thieves re-simulated together.
