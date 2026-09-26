@@ -274,6 +274,7 @@ MVP (web / PWA):
 > Flick your phone once a day to throw a paper plane. It takes off from wherever yesterday's landed.
 - Real wind carries it, and each country it lands in stamps it. Race your friends around the world.
 - Closest thing: Google's Paper Planes (2016), where you threw and caught planes. What's new is a daily journey.
+- **Prototype:** a playable version is in [`eighty-throws/`](eighty-throws/). Open `eighty-throws/index.html` in a browser.
 
 ### Slow Poker
 > Draw one card a day, keep it or toss it. The best hand on Sunday wins your group.

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- build:skeleton (the artifact host supplies this part itself) -->
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<!-- /build:skeleton -->
+<!-- build:head -->
+<title>80 Throws</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<!-- /build:head -->
+</head>
+<body>
+<!-- build:body -->
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="brand-num">80</span><span class="brand-word">Throws</span></div>
+    <button class="pill" id="stampsBtn" type="button" aria-label="Your passport stamps">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 3h14v18H5z M8 7h8M8 11h8M8 15h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      Stamps <b id="stampCount">0</b>
+    </button>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="Open the menu" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+  </header>
+  <div class="airmail" aria-hidden="true"></div>
+
+  <section class="race" aria-label="Your race against Phileas Fogg">
+    <div class="race-labels">
+      <span id="dayLabel">Day 1</span>
+      <span class="race-text" id="raceText">Level with Fogg</span>
+    </div>
+    <div class="track" role="img" aria-label="How far around the world you and Fogg have got">
+      <div class="track-fill" id="trackFill"></div>
+      <span class="marker marker-fogg" id="foggMarker" title="Phileas Fogg">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><ellipse cx="12" cy="18" rx="10" ry="2.6" fill="#23232a"/><rect x="6.5" y="5" width="11" height="13" rx="1" fill="#23232a"/><rect x="6.5" y="13" width="11" height="2.6" fill="#d7263d"/></svg>
+      </span>
+      <span class="marker marker-you" id="youMarker" title="You">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M22 12 3 4l4 8-4 8z" fill="#fff" stroke="#14306b" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 12H7" stroke="#14306b" stroke-width="1.6"/></svg>
+      </span>
+    </div>
+  </section>
+
+  <main class="stage">
+    <div class="map-wrap" id="mapWrap">
+      <canvas id="map" role="img" aria-label="Map of the world with your paper plane on it"></canvas>
+      <button class="map-btn" id="zoomBtn" type="button" aria-pressed="false">Whole world</button>
+      <div class="stamp-pop" id="stampPop" hidden aria-live="polite">
+        <div class="stamp-big">
+          <span class="stamp-big-flag" id="stampPopFlag"></span>
+          <span class="stamp-big-name" id="stampPopName"></span>
+          <span class="stamp-big-day" id="stampPopDay"></span>
+        </div>
+      </div>
+    </div>
+
+    <section class="card" id="card" aria-live="polite">
+      <h2 class="card-title" id="cardTitle">Day 1: leave London</h2>
+      <div class="card-lines" id="cardLines"></div>
+      <div class="actions" id="cardActions"></div>
+      <p class="card-note" id="cardNote" hidden></p>
+      <textarea class="share-out" id="shareOut" rows="4" readonly hidden aria-label="Your result, ready to copy"></textarea>
+    </section>
+  </main>
+
+  <div class="sheet" id="intro" hidden>
+    <div class="sheet-card envelope" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+      <p class="par-avion">Par avion</p>
+      <h1 class="intro-title" id="introTitle">80 Throws</h1>
+      <p class="intro-lede">Throw a paper plane once a day. Get it all the way around the world before Phileas Fogg does it in 80 days.</p>
+      <ul class="intro-list">
+        <li>Drag on the map toward where you want to go. Let go to throw.</li>
+        <li>The wind pushes your plane. At London's latitude it mostly blows east, so ride it.</li>
+        <li>Land in a new country to collect its stamp. Land in the sea and your plane gets soggy.</li>
+        <li>Fogg never skips a day. Neither should you.</li>
+      </ul>
+      <button class="btn primary" id="introBtn" type="button" data-close>Leave London</button>
+    </div>
+  </div>
+
+  <div class="sheet" id="stamps" hidden>
+    <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="stampsTitle">
+      <div class="sheet-head">
+        <h2 id="stampsTitle">Passport</h2>
+        <button class="icon-btn" id="stampsClose" type="button" aria-label="Close your passport" data-close>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </button>
+      </div>
+      <div class="stamps-grid" id="stampsGrid"></div>
+    </div>
+  </div>
+
+  <div class="sheet" id="menu" hidden>
+    <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+      <div class="sheet-head">
+        <h2 id="menuTitle">How it works</h2>
+        <button class="icon-btn" id="menuClose" type="button" aria-label="Close the menu" data-close>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </button>
+      </div>
+      <ul class="how">
+        <li><b>One throw a day.</b> Drag on the map to aim, and drag farther to throw harder. Let go to throw.</li>
+        <li><b>Throwing too hard can stall.</b> The preview turns amber, then red, when there's a risk.</li>
+        <li><b>The wind is modelled on Earth's real wind belts.</b> Westerlies blow east between about 30° and 60° north and south. Trade winds blow west near the equator. Each day brings new weather on top.</li>
+        <li><b>Sea landings make your plane soggy.</b> Your next throw flies 30% shorter.</li>
+        <li><b>The race.</b> Cross every line of longitude to get home. Fogg keeps to his 1872 timetable (Suez, Bombay, Hong Kong, San Francisco, New York) and gets back to London on day 80.</li>
+      </ul>
+      <div class="menu-actions">
+        <button class="btn" id="soundBtn" type="button">Sound: on</button>
+      </div>
+      <h3>Keep your journey safe</h3>
+      <p class="fine">Your journey is saved in this browser. Copy a backup code to move it to another device or to keep it safe.</p>
+      <div class="menu-actions">
+        <button class="btn" id="backupBtn" type="button">Copy backup code</button>
+      </div>
+      <label class="fine" for="restoreText">Restore from a backup code</label>
+      <textarea id="restoreText" rows="2" placeholder="80T1:…"></textarea>
+      <div class="menu-actions">
+        <button class="btn" id="restoreBtn" type="button">Restore</button>
+        <button class="btn danger" id="resetBtn" type="button">Start over</button>
+      </div>
+      <p class="fine" id="menuMsg" aria-live="polite"></p>
+    </div>
+  </div>
+</div>
+<!-- /build:body -->
+<script src="src/world-data.js"></script>
+<script src="src/geo.js"></script>
+<script src="src/weather.js"></script>
+<script src="src/flight.js"></script>
+<script src="src/race.js"></script>
+<script src="src/storage.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/map.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
