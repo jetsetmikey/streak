@@ -1,0 +1,515 @@
+/* Close Call: hazard signage. Safety yellow and black by day; at night, the
+ * same sign caught in a torch beam. The narrator speaks in a book face. */
+:root {
+  --yellow: #ffd100;
+  --black: #16130c;
+  --page: var(--yellow);
+  --on-page: var(--black);
+  --on-page-soft: #564800;
+  --brand: var(--black);
+  --card: #fffbea;
+  --ink: #16130c;
+  --ink-soft: #5f5846;
+  --edge: #16130c;
+  --chip: #fff0a3;
+  --field: #ffffff;
+  --btn: #16130c;
+  --btn-ink: #ffd100;
+  --good: #137a37;
+  --bad: #c9230f;
+  --stone: #d6d2c7;
+  --stone-ink: #332f26;
+  --stone-edge: #16130c;
+  --focus: #1b4fd1;
+  --veil: rgba(22, 19, 12, 0.6);
+  --stripes: repeating-linear-gradient(-45deg, var(--black) 0 12px, var(--yellow) 12px 24px);
+  --font-sign: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-story: "Newsreader", Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #13110b;
+    --on-page: #f3edd8;
+    --on-page-soft: #b8af94;
+    --brand: var(--yellow);
+    --card: #1e1b13;
+    --ink: #f3edd8;
+    --ink-soft: #afa68b;
+    --edge: var(--yellow);
+    --chip: #2e2917;
+    --field: #16140d;
+    --btn: var(--yellow);
+    --btn-ink: #13110b;
+    --good: #43c96f;
+    --bad: #ff6150;
+    --stone: #39362d;
+    --stone-ink: #ebe5d1;
+    --stone-edge: #6f6955;
+    --focus: #8fb4ff;
+    --veil: rgba(0, 0, 0, 0.66);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --page: #13110b;
+  --on-page: #f3edd8;
+  --on-page-soft: #b8af94;
+  --brand: var(--yellow);
+  --card: #1e1b13;
+  --ink: #f3edd8;
+  --ink-soft: #afa68b;
+  --edge: var(--yellow);
+  --chip: #2e2917;
+  --field: #16140d;
+  --btn: var(--yellow);
+  --btn-ink: #13110b;
+  --good: #43c96f;
+  --bad: #ff6150;
+  --stone: #39362d;
+  --stone-ink: #ebe5d1;
+  --stone-edge: #6f6955;
+  --focus: #8fb4ff;
+  --veil: rgba(0, 0, 0, 0.66);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--page); }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--on-page);
+  font: 16px/1.5 var(--font-sign);
+  -webkit-tap-highlight-color: transparent;
+}
+button, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+h1, h2, h3 { text-wrap: balance; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.label {
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---- Frame ---- */
+
+.hazard { height: 14px; background: var(--stripes); }
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-inline: 16px;
+  padding-block: 0 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.main { display: flex; flex-direction: column; gap: 18px; }
+
+.top { display: flex; align-items: center; gap: 8px; padding-block: 16px 0; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+  color: var(--brand);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.sign { width: 36px; height: 32px; flex: none; }
+.sign-plate { fill: var(--brand); stroke: var(--brand); stroke-width: 3; stroke-linejoin: round; }
+.sign-mark { fill: none; stroke: var(--page); stroke-width: 3.6; stroke-linecap: round; }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  flex: none;
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 12px 14px;
+  border: 3px solid var(--edge);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+}
+.news p { flex: 1 1 240px; font-weight: 600; }
+
+.link-btn {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ---- The character ---- */
+
+.who { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 18px; }
+.who-id { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.who-name {
+  font-weight: 900;
+  font-stretch: 72%;
+  font-size: 32px;
+  line-height: 1.02;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.who-name.is-dead { text-decoration: line-through; text-decoration-thickness: 3px; }
+.who-job { color: var(--on-page-soft); font-size: 16px; font-weight: 500; }
+.who-stats { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.tally { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; }
+.marks { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; gap: 3px; max-width: 160px; }
+.marks:empty { display: none; }
+.marks i { width: 11px; height: 11px; border: 2px solid var(--edge); border-radius: 2px; background: var(--good); }
+.marks i.is-dead { background: var(--bad); }
+.luck { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.luck b { font-weight: 800; }
+.pips { display: inline-flex; gap: 3px; }
+.pips i { width: 7px; height: 16px; border: 2px solid var(--on-page); border-radius: 2px; }
+.pips i.is-on { background: var(--on-page); }
+
+/* ---- Today's close call, a sign plate ---- */
+
+.card {
+  background: var(--card);
+  color: var(--ink);
+  border: 3px solid var(--edge);
+  border-radius: 8px;
+}
+.call { display: flex; flex-direction: column; gap: 14px; padding: 20px 20px 22px; }
+.call.is-shaken { animation: shake 420ms 120ms ease-out; }
+.call-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  color: var(--ink-soft);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.call-title {
+  font-weight: 900;
+  font-stretch: 66%;
+  font-size: 46px;
+  line-height: 0.96;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+.call-text { font-size: 18px; line-height: 1.55; }
+.pockets { display: flex; flex-direction: column; gap: 8px; }
+.pockets .label { color: var(--ink-soft); }
+.items { display: flex; flex-wrap: wrap; gap: 8px; }
+.items li {
+  padding: 5px 12px;
+  border: 2px solid var(--edge);
+  border-radius: 999px;
+  background: var(--chip);
+  font-weight: 600;
+  font-size: 15px;
+}
+.tape { height: 12px; margin: 6px -20px 2px; background: var(--stripes); }
+
+.act { display: flex; flex-direction: column; gap: 10px; }
+.act-label { font-weight: 900; font-stretch: 72%; font-size: 26px; line-height: 1.1; text-transform: uppercase; }
+#action {
+  width: 100%;
+  min-height: 96px;
+  padding: 12px 14px;
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  background: var(--field);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.45;
+  resize: vertical;
+}
+#action::placeholder { color: var(--ink-soft); opacity: 0.8; }
+.act-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.counter { color: var(--ink-soft); font-size: 13px; font-variant-numeric: tabular-nums; }
+.fine { color: var(--ink-soft); font-size: 13.5px; }
+.notice {
+  padding: 10px 12px;
+  border: 2px dashed var(--bad);
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.btn.primary {
+  border-color: var(--btn);
+  background: var(--btn);
+  color: var(--btn-ink);
+  font-weight: 900;
+  font-stretch: 78%;
+  font-size: 21px;
+  letter-spacing: 0.04em;
+  padding: 0 26px;
+}
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.danger { color: var(--bad); border-color: var(--bad); }
+.btn.is-armed { background: var(--bad); border-color: var(--bad); color: #fff; }
+
+/* ---- The story ---- */
+
+.tale { display: flex; flex-direction: column; gap: 14px; }
+.said { display: flex; align-items: baseline; gap: 10px; font-weight: 600; font-size: 17px; line-height: 1.45; }
+.said-tag {
+  flex: none;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--card);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.thinking { display: flex; flex-direction: column; gap: 10px; color: var(--ink-soft); font-size: 15px; }
+.thinking-bar {
+  display: block;
+  height: 12px;
+  border: 2px solid var(--edge);
+  border-radius: 4px;
+  background: var(--stripes);
+  animation: crawl 0.8s linear infinite;
+}
+.story { font-family: var(--font-story); font-size: 22px; line-height: 1.5; }
+.story:empty { display: none; }
+.story.is-typing::after {
+  content: "";
+  display: inline-block;
+  width: 0.45em;
+  height: 0.95em;
+  margin-left: 3px;
+  vertical-align: -0.1em;
+  background: var(--ink);
+  animation: blink 0.9s steps(1) infinite;
+}
+.stamp {
+  align-self: flex-end;
+  margin: 2px 6px 4px;
+  padding: 6px 16px 3px;
+  border: 5px solid currentColor;
+  border-radius: 8px;
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: rotate(-7deg);
+}
+.stamp.is-good { color: var(--good); }
+.stamp.is-bad { color: var(--bad); }
+.stamp.is-in { animation: stamp 440ms cubic-bezier(0.2, 1.25, 0.4, 1) both; }
+.pending, .problem { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.pending p { color: var(--ink-soft); }
+
+/* ---- After the verdict ---- */
+
+.after { display: flex; flex-direction: column; gap: 18px; }
+.after.is-new { animation: rise 500ms ease-out both; }
+.catch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 3px solid var(--edge);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 16.5px;
+}
+.catch .label { color: var(--bad); }
+.lives { display: flex; flex-direction: column; gap: 4px; }
+.lives-head {
+  font-weight: 900;
+  font-stretch: 66%;
+  font-size: 44px;
+  line-height: 0.98;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.lives-sub { font-weight: 600; font-size: 16px; }
+.stone-slot { display: flex; justify-content: center; }
+.stone-slot .stone { width: min(100%, 360px); }
+.after-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.next { font-weight: 600; font-size: 15px; }
+.share-out {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid var(--edge);
+  border-radius: 6px;
+  background: var(--field);
+  color: var(--ink);
+  font-size: 14px;
+  resize: none;
+}
+.skip { align-self: flex-start; color: var(--on-page-soft); font-size: 14px; }
+
+/* ---- Gravestones ---- */
+
+.stone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 44px 22px 22px;
+  border: 3px solid var(--stone-edge);
+  border-radius: 50% 50% 8px 8px / 110px 110px 8px 8px;
+  background: var(--stone);
+  color: var(--stone-ink);
+  text-align: center;
+}
+.stone-rip { font-weight: 800; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+.stone-name { font-weight: 900; font-stretch: 70%; font-size: 30px; line-height: 1.02; text-transform: uppercase; overflow-wrap: anywhere; }
+.stone-job { font-size: 14px; }
+.stone-epitaph { margin-top: 8px; font-family: var(--font-story); font-style: italic; font-size: 20px; line-height: 1.35; }
+.stone-life { margin-top: 10px; font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ---- Sheets ---- */
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: var(--veil);
+}
+.sheet-card {
+  width: 100%;
+  max-width: 560px;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 3px solid var(--edge);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+}
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sheet-head h2 { font-weight: 900; font-stretch: 70%; font-size: 30px; line-height: 1; text-transform: uppercase; }
+.sheet-card h3 { font-weight: 900; font-stretch: 75%; font-size: 19px; text-transform: uppercase; margin-top: 4px; }
+.sign-card { position: relative; padding-top: 34px; overflow: hidden; }
+.sign-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 14px; background: var(--stripes); }
+.sign-big { width: 56px; height: 50px; }
+.sign-big .sign-mark { stroke: var(--card); }
+.sign-big .sign-plate { fill: var(--ink); stroke: var(--ink); }
+.intro-title { font-weight: 900; font-stretch: 62%; font-size: 58px; line-height: 0.95; text-transform: uppercase; }
+.intro-lede { font-size: 18px; font-weight: 500; }
+.rules { display: flex; flex-direction: column; gap: 9px; padding-left: 20px; list-style: square; color: var(--ink-soft); font-size: 15px; }
+.rules li::marker { color: var(--bad); }
+.rules b { color: var(--ink); }
+.sign-card .btn.primary { align-self: flex-start; margin-top: 4px; }
+.menu-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.best { font-weight: 700; }
+.standing { color: var(--ink-soft); }
+.graves { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.graves .stone { height: 100%; padding: 30px 12px 16px; border-radius: 50% 50% 6px 6px / 64px 64px 6px 6px; }
+.graves .stone-name { font-size: 20px; }
+.graves .stone-epitaph { font-size: 16px; }
+.graves .stone-life { font-size: 10.5px; }
+.graves-empty { grid-column: 1 / -1; color: var(--ink-soft); }
+
+/* ---- Motion ---- */
+
+@keyframes crawl { to { background-position: 33.94px 0; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes stamp {
+  from { opacity: 0; transform: rotate(-7deg) scale(2.6); }
+  60% { opacity: 1; transform: rotate(-7deg) scale(0.94); }
+  to { opacity: 1; transform: rotate(-7deg) scale(1); }
+}
+@keyframes shake {
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+}
+
+/* ---- Phones ---- */
+
+@media (max-width: 480px) {
+  .brand { font-size: 32px; }
+  .sign { width: 30px; height: 27px; }
+  .who-name { font-size: 28px; }
+  .who-stats { align-items: flex-start; }
+  .marks { justify-content: flex-start; }
+  .call { padding: 16px 16px 18px; }
+  .tape { margin-inline: -16px; }
+  .call-title { font-size: 40px; }
+  .call-text { font-size: 17px; }
+  .story { font-size: 20px; }
+  .stamp { font-size: 48px; }
+  .lives-head { font-size: 38px; }
+  .intro-title { font-size: 50px; }
+}

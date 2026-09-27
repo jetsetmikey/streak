@@ -292,3 +292,18 @@ MVP (web / PWA):
 - **One Brick**, to play today: it works alone, needs no other players, and is quick to prototype.
 - **Same**, for the strongest pull between two people.
 - **Odd One Out** and **Still Here** are strong but need a crowd before they're fun.
+
+---
+
+## Round 3: a day that's fun on its own
+
+**What we learned:** Round 2 fixed "too fiddly", but 80 Throws was dull. The wind did most of the work, a careless throw landed about as well as a careful one, and the payoff was weeks away. So this round had two tests. The one daily action has to be fun even if you never come back tomorrow, and nothing like it can already be on the app store.
+
+### Close Call
+> One deadly situation a day. One sentence to survive it. Claude narrates what happens.
+- Everyone gets the same situation, with three odd things in their pockets. You write what you do, and the narrator tells you in three or four dry sentences how it went. Then the stamp comes down: SURVIVED or DEAD.
+- Every situation hides a clue, and the obvious move often kills you. After the verdict, the catch shows what you missed, so you get better at reading closely. That's real skill, not luck.
+- Your streak is a character's life: a name, a job, and a count of close calls survived. Luck runs out, so the narrator gets stricter the longer they live. Miss a day and they face it alone.
+- Death is the shareable. Every character gets a gravestone and an epitaph ("Jumped at exactly the right moment."), and your graveyard fills up with them.
+- Closest things: AI Dungeon and other open-ended AI story games (endless, no shared daily puzzle, no stakes), and One Chance (2010), a game you could only play once. I found nothing that combines a shared daily situation, one-sentence answers judged by an AI, and a character who dies for good.
+- **Prototype:** a playable version is in [`close-call/`](close-call/). Claude is the narrator, so it runs as a claude.ai artifact.

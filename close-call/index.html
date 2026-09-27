@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- build:skeleton (the artifact host supplies this part itself) -->
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<!-- /build:skeleton -->
+<!-- build:head -->
+<title>Close Call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap">
+<link rel="stylesheet" href="style.css">
+<!-- /build:head -->
+</head>
+<body>
+<!-- build:body -->
+<div class="hazard" aria-hidden="true"></div>
+<div class="app">
+  <header class="top">
+    <p class="brand">
+      <svg class="sign" viewBox="0 0 34 30" aria-hidden="true"><path class="sign-plate" d="M17 1.5 32.5 28.5h-31z"/><path class="sign-mark" d="M17 10.5v9M17 23.3v.4"/></svg>
+      <span>Close Call</span>
+    </p>
+    <button class="icon-btn" id="graveBtn" type="button" aria-label="Open the graveyard">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 21V10.5a6 6 0 0 1 12 0V21M3.5 21h17M12 9v6M9.5 11.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <b id="graveCount">0</b>
+    </button>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="How to play" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9.2 9a3 3 0 1 1 4.3 2.7c-.9.4-1.5 1.2-1.5 2.2v.6M12 18v.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="news" id="news" hidden>
+    <p id="newsText"></p>
+    <button class="link-btn" id="newsBtn" type="button">See the grave</button>
+  </div>
+
+  <main class="main">
+    <section class="who" aria-label="Your character">
+      <div class="who-id">
+        <p class="label" id="whoLabel">Your character</p>
+        <h2 class="who-name" id="whoName"></h2>
+        <p class="who-job" id="whoJob"></p>
+      </div>
+      <div class="who-stats">
+        <p class="tally"><span class="marks" id="marks" aria-hidden="true"></span><span id="survivedText"></span></p>
+        <p class="luck" id="luck"><span class="label">Luck</span><span class="pips" id="pips" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b id="luckWord"></b></p>
+      </div>
+    </section>
+
+    <article class="card call" id="call" aria-labelledby="callTitle">
+      <p class="call-meta"><span id="callNo"></span><span id="callDate"></span></p>
+      <h1 class="call-title" id="callTitle"></h1>
+      <p class="call-text" id="callText"></p>
+      <div class="pockets">
+        <p class="label">In your pockets</p>
+        <ul class="items" id="items"></ul>
+      </div>
+      <div class="tape" aria-hidden="true"></div>
+
+      <form class="act" id="actForm" novalidate>
+        <label class="act-label" for="action">What do you do?</label>
+        <textarea id="action" rows="3" maxlength="140" placeholder="One sentence. Be specific." autocomplete="off" spellcheck="true"></textarea>
+        <div class="act-row">
+          <span class="counter" id="counter" aria-live="polite">0 / 140</span>
+          <button class="btn primary" id="doBtn" type="submit">Do it</button>
+        </div>
+        <p class="fine" id="formNote" hidden></p>
+        <p class="fine" id="consent">Claude narrates what happens, on your own Claude account. The first time, you'll be asked to allow it.</p>
+        <p class="notice" id="offline" hidden></p>
+      </form>
+
+      <div class="tale" id="tale" hidden>
+        <p class="said"><span class="said-tag">You</span><span id="said"></span></p>
+        <div class="thinking" id="thinking">
+          <span class="thinking-bar" aria-hidden="true"></span>
+          <p>The narrator is deciding your fate…</p>
+        </div>
+        <p class="story" id="story"></p>
+        <p class="stamp" id="stamp" hidden></p>
+        <div class="pending" id="pendingBox" hidden>
+          <p>Your sentence is locked in. Nobody knows what happened yet, not even you.</p>
+          <button class="btn primary" id="hearBtn" type="button">Hear what happened</button>
+        </div>
+        <div class="problem" id="problem" hidden>
+          <p class="notice" id="problemText"></p>
+          <button class="btn" id="retryBtn" type="button">Try again</button>
+        </div>
+      </div>
+    </article>
+
+    <section class="after" id="after" aria-label="What happened" hidden>
+      <div class="catch">
+        <p class="label">The catch</p>
+        <p id="catchText"></p>
+      </div>
+      <div class="lives" id="lives" hidden>
+        <p class="lives-head" id="livesHead"></p>
+        <p class="lives-sub" id="livesSub"></p>
+      </div>
+      <div class="stone-slot" id="stoneSlot" hidden></div>
+      <div class="after-actions">
+        <button class="btn primary" id="copyBtn" type="button">Copy result</button>
+        <p class="next" id="nextText"></p>
+      </div>
+      <textarea class="share-out" id="shareOut" rows="4" readonly hidden aria-label="Your result, ready to copy"></textarea>
+      <button class="link-btn skip" id="skipBtn" type="button">Prototype: skip to tomorrow</button>
+    </section>
+  </main>
+
+  <p class="sr-only" id="announce" aria-live="polite"></p>
+</div>
+
+<div class="sheet" id="intro" hidden>
+  <div class="sheet-card sign-card" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+    <svg class="sign sign-big" viewBox="0 0 34 30" aria-hidden="true"><path class="sign-plate" d="M17 1.5 32.5 28.5h-31z"/><path class="sign-mark" d="M17 10.5v9M17 23.3v.4"/></svg>
+    <h2 class="intro-title" id="introTitle">Close Call</h2>
+    <p class="intro-lede">Every day, your character faces one deadly situation. You get one sentence to get them out of it.</p>
+    <ul class="rules">
+      <li><b>Read closely.</b> Every situation hides a clue, and the obvious move is often the one that kills you.</li>
+      <li><b>Be specific.</b> The narrator takes you at your word. The narrator is Claude.</li>
+      <li><b>Survive</b> and your character lives to face tomorrow's close call. Die, or miss a day, and they're gone for good.</li>
+    </ul>
+    <button class="btn primary" id="introBtn" type="button" data-close>Meet your character</button>
+  </div>
+</div>
+
+<div class="sheet" id="graveyard" hidden>
+  <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="graveTitle">
+    <div class="sheet-head">
+      <h2 id="graveTitle">Graveyard</h2>
+      <button class="icon-btn" type="button" aria-label="Close the graveyard" data-close>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+      </button>
+    </div>
+    <p class="best" id="bestLine"></p>
+    <p class="standing" id="standing" hidden></p>
+    <ul class="graves" id="graves"></ul>
+  </div>
+</div>
+
+<div class="sheet" id="menu" hidden>
+  <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+    <div class="sheet-head">
+      <h2 id="menuTitle">How to play</h2>
+      <button class="icon-btn" type="button" aria-label="Close how to play" data-close>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+      </button>
+    </div>
+    <ul class="rules">
+      <li><b>One close call a day.</b> Everyone gets the same one, and a new one arrives at midnight.</li>
+      <li><b>One sentence.</b> Use what's in your pockets, your own body, and anything the situation mentions. Magic, superpowers and "it was all a dream" don't work.</li>
+      <li><b>Every situation hides a clue.</b> After the verdict, the catch tells you what it was.</li>
+      <li><b>Luck runs out.</b> A new character gets the benefit of the doubt. After 3 close calls the narrator judges fairly, after 10 strictly, and after 25 very strictly.</li>
+      <li><b>Miss a day and your character is gone.</b> They faced it alone. A new character arrives the next day.</li>
+      <li><b>The narrator is Claude.</b> Each verdict uses your own Claude account.</li>
+    </ul>
+    <div class="menu-actions">
+      <button class="btn" id="soundBtn" type="button">Sound: on</button>
+    </div>
+    <h3>Prototype tools</h3>
+    <p class="fine">Your characters are saved in this browser only. Skipping ahead counts as missing today.</p>
+    <div class="menu-actions">
+      <button class="btn" id="menuSkipBtn" type="button">Skip to tomorrow</button>
+      <button class="btn danger" id="resetBtn" type="button">Start over</button>
+    </div>
+  </div>
+</div>
+<!-- /build:body -->
+<script src="src/scenarios.js"></script>
+<script src="src/game.js"></script>
+<script src="src/storage.js"></script>
+<script src="src/narrator.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
